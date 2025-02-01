@@ -22,7 +22,7 @@ if search_button:
 
 key_dict = st.secrets["textkey"]
 st.write(key_dict)  
-key_dict["private_key"] = key_dict["private_key"].replace("\n", "")
+#key_dict["private_key"] = key_dict["private_key"].replace("\n", "")
 creds = service_account.Credentials.from_service_account_info(key_dict)
 db = firestore.Client(credentials=creds, project=key_dict["project_id"])
 st.write("Conexión a Firestore exitosa")
