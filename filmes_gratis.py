@@ -21,7 +21,7 @@ if search_button:
     st.dataframe(filtered_df)
 
 data = {
-    'title': ['Film 1', 'Film 2', 'Film 3', 'Film 4'],
+    'title': ['Pelicula 1', 'Pelicula 2', 'Pelicula 3', 'Pelicula 4'],
     'director': ['Director A', 'Director B', 'Director A', 'Director C']
 }
 df = pd.DataFrame(data)
@@ -31,11 +31,13 @@ director_selected = st.sidebar.selectbox(
     options=df['director'].unique(),
     index=0  
 )
+st.sidebar.title("Buscar Filme por Título")
+search_title = st.sidebar.text_input("Ingresa el título de la película:")
 
-key_dict = st.secrets["textkey"]
-st.write(key_dict)  
+#key_dict = st.secrets["textkey"]
+#st.write(key_dict)  
 #key_dict["private_key"] = key_dict["private_key"].replace("\\n", "\n")
 #creds = service_account.Credentials.from_service_account_info(key_dict)
-creds = service_account.Credentials.from_service_account_info(key_dict)
-db = firestore.Client(credentials=creds, project=key_dict["project_id"])
-st.write("Conexión a Firestore exitosa")
+#creds = service_account.Credentials.from_service_account_info(key_dict)
+#db = firestore.Client(credentials=creds, project=key_dict["project_id"])
+#st.write("Conexión a Firestore exitosa")
