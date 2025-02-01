@@ -32,33 +32,6 @@ director_selected = st.sidebar.selectbox(
     index=0  
 )
 
-def filter_films_by_director(director):
-    filtered_df = df[df['director'] == director]
-    return filtered_df
-
-if st.sidebar.button("Buscar Filmes"):
-    filtered_films = filter_films_by_director(director_selected)
-    
-    st.write(f"Filmes encontrados de {director_selected}:")
-    st.dataframe(filtered_films) 
-    st.write(f"Total de filmes encontrados: {len(filtered_films)}")
-
-df = pd.DataFrame(data)
-
-st.sidebar.title("Buscar Filme por Título")
-search_title = st.sidebar.text_input("Ingresa el título de la película:")
-if st.sidebar.button("Buscar"):
-    if search_title:
-        search_title_lower = search_title.lower()
-        filtered_films = df[df['title'].str.lower().str.contains(search_title_lower)]
-        if not filtered_films.empty:
-            st.write(f"**Películas encontradas ({len(filtered_films)}):**")
-            st.write(filtered_films[['title', 'director']])
-        else:
-            st.write("No se encontraron películas que coincidan.")
-    else:
-        st.write("Por favor, ingrese un título para buscar.")
-
 key_dict = st.secrets["textkey"]
 st.write(key_dict)  
 #key_dict["private_key"] = key_dict["private_key"].replace("\\n", "\n")
