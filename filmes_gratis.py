@@ -5,7 +5,6 @@ from google.oauth2 import service_account
 import json 
 
 st.title('NETFLIX APP')
-st.title("Todos los filmes")
 st.header("Todos las peliculas")
 
 #df_movies = read_from_firestore()
@@ -21,10 +20,8 @@ if search_button:
     filtered_df = df_movies[df_movies["name"].str.contains(search_query, case=False, na=False)]
     st.dataframe(filtered_df)
 
-
-st.write(st.secrets["textkey"])  
-
-key_dict = st.secrets["textkey"]["credentials"]
+key_dict = st.secrets["textkey"]
+st.write(key_dict)  
 key_dict["private_key"] = key_dict["private_key"].replace("\n", "")
 creds = service_account.Credentials.from_service_account_info(key_dict)
 db = firestore.Client(credentials=creds, project=key_dict["project_id"])
