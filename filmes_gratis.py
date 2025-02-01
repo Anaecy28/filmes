@@ -4,6 +4,11 @@ from google.cloud import firestore
 from google.oauth2 import service_account
 import json 
 
+key_dict = json.loads(st.secrets["textkey"])
+creds = service_account.Credentials.from_service_account_info(key_dict)
+db = firestore.Client(credentials=creds, project=key_dict["project_id"])
+st.write("Conexión a Firestore exitosa")
+
 def read_from_firestore():
     movies_ref = db.collection("movies")
     docs = movies_ref.stream()
